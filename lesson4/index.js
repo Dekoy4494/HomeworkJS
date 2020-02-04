@@ -19,7 +19,7 @@ let appData = {
     income: [],
     timeData: time,
     savings: true,
-    chooseExpenses: function() {
+    chooseExpenses: function () {
         for (let i = 0; i < 2; i++) {
             let a = prompt("Введите обязательную статью расодов в этом месяце", ''),
                 b = prompt("Во сколько обойдется?");
@@ -32,7 +32,7 @@ let appData = {
             }
         }
     },
-    detectDayBudget: function() {
+    detectDayBudget: function () {
         appData.moneyPerDay = (appData.budget / 30).toFixed();
         alert("Ежедневный бюджет: " + appData.moneyPerDay);
     },
@@ -51,7 +51,7 @@ let appData = {
         if (appData.savings == true) {
             let save = +prompt("Какова сумма накоплений?"),
                 percent = +prompt("Под какой процент?");
-    
+
             appData.monthIncome = save / 100 / 12 * percent;
             alert("Доход в месяц с вашего депозита : " + appData.monthIncome);
         }
@@ -64,28 +64,22 @@ let appData = {
         }
     },
     chooseIncome: function () {
-        let items = prompt('Что принесет дополнительный доход? (Перечислите через запятую)', '');
-        appData.income = items.split(', ');
-    }
+        for (let i = 0; i < 1; i++) {
+            let items = prompt('Что принесет дополнительный доход? (Перечислите через запятую)', '');
+            if ((typeof (items)) === 'string' && items != '') {
+                appData.income = items.split(', ');
+                appData.income.push(prompt('Может что то еще принесет доход?', ''));
+                appData.income.sort();
+                appData.income.forEach(function (items, i) {
+                    alert('Способы дополнительного заработка: ' + (i + 1) + items);
+                });
+            } else {
+                i = i - 1;
+            }
+        }
+    },
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+for (let key in appData) {
+    console.log('Наша программа включает в себя данные: ' + key);
+}
